@@ -7,10 +7,12 @@
 import java.util.Collection;
 public class Main {
     public static void main(String[] args) {
-        String s = "((()";
+        String s = "(((ab)";
         Stack<HashMap<Integer,Character>> st = new Stack<>();
         int i = 0;
         // List<Integer>
+        char[] res = s.toCharArray();
+        List<Integer> li = new ArrayList<>();
         for(Character c:s.toCharArray()){
             HashMap<Integer,Character> hm = new HashMap<>();
             if(c=='('){
@@ -25,6 +27,16 @@ public class Main {
              }
             }
         }
-        System.out.print(st);
+        
+        String ans = "";
+        // System.out.print(st);
+        for(int j=res.length-1;j>=0;j--){
+            if(st.peek().containsKey(j)){
+                st.pop();
+            }else{
+                ans = res[j] + ans;
+            }
+        }
+        System.out.print(ans); //(ab)
     }
 }
